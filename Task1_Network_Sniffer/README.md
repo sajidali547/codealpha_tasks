@@ -1,4 +1,3 @@
-@'
 # CodeAlpha Network Sniffer
 
 ## Task 1: Basic Network Sniffer
