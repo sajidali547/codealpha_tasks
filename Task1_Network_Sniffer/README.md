@@ -32,4 +32,4 @@ Options:
 - Understanding network protocol structure
 - Packet analysis techniques
 - Network traffic monitoring
-'@ | Out-File -FilePath README.md -Encoding utf8
+
