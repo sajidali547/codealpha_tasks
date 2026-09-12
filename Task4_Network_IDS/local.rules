@@ -1,0 +1,18 @@
+@'
+# CodeAlpha Custom Snort Rules
+
+# Detect ICMP Ping
+alert icmp any any -> any any (msg:"ICMP Ping Detected"; sid:1000001; rev:1;)
+
+# Detect SSH Brute Force
+alert tcp any any -> any 22 (msg:"Possible SSH Brute Force"; flow:to_server; threshold:type both, track by_src, count 5, seconds 60; sid:1000002; rev:1;)
+
+# Detect SQLMap User-Agent
+alert tcp any any -> any 80 (msg:"Suspicious HTTP User-Agent - SQLMap"; content:"User-Agent|3A| sqlmap"; nocase; sid:1000003; rev:1;)
+
+# Detect Nmap SYN Scan
+alert tcp any any -> any any (msg:"Nmap SYN Scan Detected"; flags:S; threshold:type both, track by_src, count 20, seconds 5; sid:1000004; rev:1;)
+
+# Detect FTP Brute Force
+alert tcp any any -> any 21 (msg:"FTP Brute Force Attempt"; flow:to_server; threshold:type both, track by_src, count 5, seconds 60; sid:1000005; rev:1;)
+'@ | Out-File -FilePath local.rules -Encoding utf8
